@@ -10,9 +10,12 @@ import java.util.List;
 @Data
 @Entity (name = "theatres")
 public class Theatre extends BaseModel {
+
     private String name;
+
+    @OneToMany (mappedBy = "theatre")
+    private List<Screen> screens;
+
     @ManyToOne
     private City city;
-    @OneToMany
-    private List<Screen> screens;
 }
