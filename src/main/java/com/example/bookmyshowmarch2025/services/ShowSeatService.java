@@ -9,4 +9,5 @@ public interface ShowSeatService {
 
     List<ShowSeat> getAvailableSeatsForShow(List<Integer> showSeatIds, Show show);
 
+    void updateShowSeats(List<ShowSeat> showSeats);
 }

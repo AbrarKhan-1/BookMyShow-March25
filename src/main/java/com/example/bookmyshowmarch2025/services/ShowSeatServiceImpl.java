@@ -21,4 +21,9 @@ public class ShowSeatServiceImpl implements ShowSeatService {
         return showSeatRepository.findByIdInAndSeatStatusAndShow(showSeatIds, SeatStatus.AVAILABLE, show);
     }
 
+    @Override
+    public void updateShowSeats(List<ShowSeat> showSeats) {
+        showSeatRepository.saveAll(showSeats);
+    }
+
 }

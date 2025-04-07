@@ -4,6 +4,7 @@ import com.example.bookmyshowmarch2025.exceptions.InvalidBookTicketException;
 import com.example.bookmyshowmarch2025.exceptions.SeatsUnavailableException;
 import com.example.bookmyshowmarch2025.models.*;
 import com.example.bookmyshowmarch2025.repositories.TicketRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ public class TicketServiceImpl implements TicketService {
     private ShowService showService;
     private ShowSeatService showSeatService;
 
+    @Autowired
     public TicketServiceImpl(TicketRepository ticketRepository, UserService userService, ShowService showService, ShowSeatService showSeatService) {
         this.ticketRepository = ticketRepository;
         this.userService = userService;
@@ -65,6 +67,7 @@ public class TicketServiceImpl implements TicketService {
             showSeat.setSeatStatus(SeatStatus.BLOCKED);
             showSeat.setUser(user);
         }
+        showSeatService.updateShowSeats(showSeats); //Updated in bulk to avoid multiple queries
 
         Ticket ticket = new Ticket();
         ticket.setUser(user);
